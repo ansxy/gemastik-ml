@@ -14,7 +14,7 @@ class Body(BaseModel):
     rainfall : float
 
 
-@router.get('/')
+@router.post('/')
 async def plant_recomendation(body: Body):
     filename = 'app/core/models/plant_recomendation.pkl'  # Specify the filename of the pickle file
     with open(filename, 'rb') as file:
