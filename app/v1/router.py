@@ -18,7 +18,7 @@ class Body(BaseModel):
 @router.post('/plant-recomendation', status_code =200)
 async def plant_recomendation(body: Body):
     current_dir = os.getcwd()
-    plant_recomendation_models = os.path.join(current_dir,"app","core","models","plant_recomendation.pkl")
+    plant_recomendation_models = os.path.join(current_dir,"core","models","plant_recomendation.pkl")
     with open(plant_recomendation_models, 'rb') as file:
         model = pickle.load(file)
     temp = [body.nitrogen,body.phosphorous,body.potash,body.temperature,body.humidity,body.ph,body.rainfall	]
