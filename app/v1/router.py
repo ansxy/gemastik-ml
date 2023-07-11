@@ -3,6 +3,7 @@ router = APIRouter()
 import pickle
 import numpy as np 
 from pydantic import BaseModel
+import os
 
 class Body(BaseModel):
     nitrogen : float
@@ -16,8 +17,9 @@ class Body(BaseModel):
 
 @router.post('/plant-recomendation', status_code =200)
 async def plant_recomendation(body: Body):
-    filename = './app/core/models/plant_recomendation.pkl' # Specify the filename of the pickle file
-    with open(filename, 'rb') as file:
+    current_dir = os.getcwd()
+    plant_recomendation_models = os.path.join(current_dir,"app","core","models","plant_recomendation.pkl")
+    with open(plant_recomendation_models, 'rb') as file:
         model = pickle.load(file)
     temp = [body.nitrogen,body.phosphorous,body.potash,body.temperature,body.humidity,body.ph,body.rainfall	]
     temp_reshaped = np.array(temp).reshape(1, -1)
