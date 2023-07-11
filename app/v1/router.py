@@ -16,7 +16,6 @@ class Body(BaseModel):
 
 @router.post('/plant-recomendation', status_code =200)
 async def plant_recomendation(body: Body):
-    print(body)
     filename = 'app/core/models/plant_recomendation.pkl' # Specify the filename of the pickle file
     with open(filename, 'rb') as file:
         model = pickle.load(file)
